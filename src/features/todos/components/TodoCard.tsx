@@ -1,6 +1,6 @@
 import { faDeleteLeft, faEdit } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Todo } from "../types/types";
+import { Todo } from "../types";
 
 type TodoCardProps = {
   todo: Todo;
@@ -17,7 +17,7 @@ const TodoCard = ({ todo }: TodoCardProps) => {
         name="isCompleted"
         id="isCompleted"
         disabled
-        checked={todo.completed}
+        checked={todo.isCompleted}
       />
       <div>{todo.content}</div>
       <button>

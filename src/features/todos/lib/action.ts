@@ -9,13 +9,14 @@ type State = {
   success: boolean;
 };
 
+const contentSchema = z.string().min(1, "タスクを入力してください。");
+
 export async function addTodoAction(
   prevState: State,
   formData: FormData
 ): Promise<State> {
   try {
     const content = formData.get("content") as string;
-    const contentSchema = z.string().min(1, "タスクを入力してください。");
     const validatedContent = contentSchema.parse(content);
     await prisma.todo.create({
       data: {

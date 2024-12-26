@@ -1,0 +1,1 @@
+export const TODO_NEW_URL = "/todos/new/";
