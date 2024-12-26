@@ -1,5 +1,6 @@
 import { faDeleteLeft, faEdit } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Todo } from "../types/types";
 
 type TodoCardProps = {
   todo: Todo;
