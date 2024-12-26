@@ -8,7 +8,7 @@ type TodoCardProps = {
 const TodoCard = ({ todo }: TodoCardProps) => {
   return (
     <li
-      className="grid grid-cols-[auto_1fr_auto_auto] gap-3 w-full"
+      className="grid grid-cols-[auto_1fr_auto_auto] gap-5 w-full"
       key={todo.id}
     >
       <input
