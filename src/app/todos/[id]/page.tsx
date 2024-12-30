@@ -1,13 +1,12 @@
 import TodoEditForm from "@/features/todos/components/TodoEditForm";
 import TodoPageLayout from "@/features/todos/components/TodoPageLayout";
 import prisma from "@/utils/prisma";
-import { NextPage } from "next/types";
 
-type EditTaskProps = {
-  params: { id: string };
+type EditTaskParams = {
+  params: Promise<{ id: string }>;
 };
 
-const EditTask: NextPage<EditTaskProps> = async ({ params }) => {
+const EditTask = async ({ params }: EditTaskParams) => {
   const { id } = await params;
   const todo = await prisma.todo.findUnique({
     where: { id },
