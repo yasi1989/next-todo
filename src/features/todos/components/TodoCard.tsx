@@ -1,6 +1,6 @@
-import { faDeleteLeft, faEdit } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Todo } from "../types";
+import TodoEditButton from "./TodoEditButton";
+import TodoDeleteButton from "./TodoDeleteButton";
 
 type TodoCardProps = {
   todo: Todo;
@@ -20,12 +20,8 @@ const TodoCard = ({ todo }: TodoCardProps) => {
         checked={todo.isCompleted}
       />
       <div>{todo.content}</div>
-      <button>
-        <FontAwesomeIcon icon={faEdit} />
-      </button>
-      <button>
-        <FontAwesomeIcon icon={faDeleteLeft} />
-      </button>
+      <TodoEditButton id={todo.id} />
+      <TodoDeleteButton id={todo.id} />
     </li>
   );
 };
