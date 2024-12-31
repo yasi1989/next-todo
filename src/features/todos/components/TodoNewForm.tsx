@@ -1,7 +1,8 @@
 "use client";
 import React, { useActionState } from "react";
 import { addTodoAction } from "../lib/action";
-import Link from "next/link";
+import SubmitButton from "@/components/SubmitButton";
+import CancelButton from "@/components/CancelButton";
 
 const TodoNewForm = () => {
   const initialState = {
@@ -27,15 +28,8 @@ const TodoNewForm = () => {
           )}
         </div>
         <div className="grid grid-cols-[1fr_auto_auto] gap-4 px-2">
-          <button className="bg-green-400 px-4 py-2 rounded-md hover:bg-green-600 transition-all duration-300 col-start-2">
-            送信
-          </button>
-          <Link
-            href={"/"}
-            className="bg-gray-200 px-4 py-2 rounded-md hover:bg-gray-400 transition-all duration-300 col-start-3"
-          >
-            キャンセル
-          </Link>
+          <SubmitButton />
+          <CancelButton />
         </div>
       </div>
     </form>

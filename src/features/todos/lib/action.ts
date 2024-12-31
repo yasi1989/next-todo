@@ -1,6 +1,7 @@
 "use server";
 
 import prisma from "@/utils/prisma";
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 
@@ -90,6 +91,7 @@ export async function deleteTodoAction(id: string): Promise<State> {
         id: id,
       },
     });
+    revalidatePath("/");
     return {
       error: "",
       success: true,
