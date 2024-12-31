@@ -97,12 +97,7 @@ export async function deleteTodoAction(id: string): Promise<State> {
       success: true,
     };
   } catch (error) {
-    if (error instanceof z.ZodError) {
-      return {
-        error: error.errors.map((e) => e.message).join(", "),
-        success: false,
-      };
-    } else if (error instanceof Error) {
+    if (error instanceof Error) {
       return {
         error: error.message,
         success: false,
