@@ -2,18 +2,15 @@
 import { useActionState } from "react";
 import { deleteTodoAction } from "../lib/action";
 import DeleteButton from "@/components/DeleteButton";
+import { initialState, TodoState } from "../lib/todoTypes";
 
 type TodoDeleteButtonProps = {
   id: string;
 };
 
 const TodoDeleteButton = ({ id }: TodoDeleteButtonProps) => {
-  const initialState = {
-    error: undefined,
-    success: false,
-  };
   const deleteTodoActionBind = deleteTodoAction.bind(null, id);
-  const [state, formAction] = useActionState(
+  const [state, formAction] = useActionState<TodoState>(
     deleteTodoActionBind,
     initialState
   );

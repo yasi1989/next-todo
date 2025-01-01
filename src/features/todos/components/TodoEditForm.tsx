@@ -4,16 +4,13 @@ import { editTodoAction } from "../lib/action";
 import { Todo } from "../types";
 import SubmitButton from "@/components/SubmitButton";
 import CancelButton from "@/components/CancelButton";
+import { initialState } from "../lib/todoTypes";
 
 type TodoEditFormProps = {
   todo: Todo;
 };
 
 const TodoEditForm = ({ todo }: TodoEditFormProps) => {
-  const initialState = {
-    error: undefined,
-    success: false,
-  };
   const [state, formAction] = useActionState(editTodoAction, initialState);
   return (
     <form action={formAction} className="w-full">

@@ -4,18 +4,14 @@ import prisma from "@/utils/prisma";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
-
-type State = {
-  error?: string | undefined;
-  success: boolean;
-};
+import { TodoState } from "./todoTypes";
 
 const contentSchema = z.string().min(1, "タスクを入力してください。");
 
 export async function addTodoAction(
-  prevState: State,
+  prevState: TodoState,
   formData: FormData
-): Promise<State> {
+): Promise<TodoState> {
   try {
     const content = formData.get("content") as string;
     const validatedContent = contentSchema.parse(content);
@@ -46,9 +42,9 @@ export async function addTodoAction(
 }
 
 export async function editTodoAction(
-  prevState: State,
+  prevState: TodoState,
   formData: FormData
-): Promise<State> {
+): Promise<TodoState> {
   try {
     const id = formData.get("id") as string;
     const content = formData.get("content") as string;
@@ -84,7 +80,7 @@ export async function editTodoAction(
   redirect("/");
 }
 
-export async function deleteTodoAction(id: string): Promise<State> {
+export async function deleteTodoAction(id: string): Promise<TodoState> {
   try {
     await prisma.todo.delete({
       where: {

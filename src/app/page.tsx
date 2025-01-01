@@ -7,7 +7,11 @@ import prisma from "@/utils/prisma";
 import { URL } from "@/utils/config";
 
 const Todo = async () => {
-  const todos = await prisma.todo.findMany();
+  const todos = await prisma.todo.findMany({
+    orderBy: {
+      createdAt: "asc",
+    },
+  });
   const createBtnRender = () => (
     <Link
       href={URL.TODO_NEW_URL}

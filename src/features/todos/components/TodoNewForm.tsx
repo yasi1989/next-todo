@@ -3,12 +3,9 @@ import React, { useActionState } from "react";
 import { addTodoAction } from "../lib/action";
 import SubmitButton from "@/components/SubmitButton";
 import CancelButton from "@/components/CancelButton";
+import { initialState } from "../lib/todoTypes";
 
 const TodoNewForm = () => {
-  const initialState = {
-    error: undefined,
-    success: false,
-  };
   const [state, formAction] = useActionState(addTodoAction, initialState);
   return (
     <form action={formAction} className="w-full">
