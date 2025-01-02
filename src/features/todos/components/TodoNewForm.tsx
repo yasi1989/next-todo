@@ -6,7 +6,10 @@ import CancelButton from "@/components/CancelButton";
 import { initialState } from "../lib/todoTypes";
 
 const TodoNewForm = () => {
-  const [state, formAction] = useActionState(addTodoAction, initialState);
+  const [state, formAction, pending] = useActionState(
+    addTodoAction,
+    initialState
+  );
   return (
     <form action={formAction} className="w-full">
       <div className="flex flex-col gap-4">
@@ -25,7 +28,7 @@ const TodoNewForm = () => {
           )}
         </div>
         <div className="grid grid-cols-[1fr_auto_auto] gap-4 px-2">
-          <SubmitButton />
+          <SubmitButton pending={pending} />
           <CancelButton />
         </div>
       </div>

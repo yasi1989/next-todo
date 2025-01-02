@@ -1,11 +1,14 @@
 import { faDeleteLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useFormStatus } from "react-dom";
 
-const DeleteButton = () => {
-  const { pending } = useFormStatus();
+type DeleteButtonProps = {
+  pending: boolean;
+  className?: string;
+};
+
+const DeleteButton = ({ pending, className = "" }: DeleteButtonProps) => {
   return (
-    <button disabled={pending}>
+    <button disabled={pending} className={className}>
       <FontAwesomeIcon icon={faDeleteLeft} />
     </button>
   );

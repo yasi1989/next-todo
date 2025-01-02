@@ -10,14 +10,14 @@ type TodoDeleteButtonProps = {
 
 const TodoDeleteButton = ({ id }: TodoDeleteButtonProps) => {
   const deleteTodoActionBind = deleteTodoAction.bind(null, id);
-  const [state, formAction] = useActionState<TodoState>(
+  const [state, formAction, pending] = useActionState<TodoState>(
     deleteTodoActionBind,
     initialState
   );
   return (
     <>
       <form action={formAction}>
-        <DeleteButton />
+        <DeleteButton pending={pending} />
       </form>
       {state.error && <p className="text-red-600 mt-2">{state.error}</p>}
     </>
