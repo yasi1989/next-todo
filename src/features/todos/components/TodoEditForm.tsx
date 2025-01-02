@@ -11,7 +11,10 @@ type TodoEditFormProps = {
 };
 
 const TodoEditForm = ({ todo }: TodoEditFormProps) => {
-  const [state, formAction] = useActionState(editTodoAction, initialState);
+  const [state, formAction, pending] = useActionState(
+    editTodoAction,
+    initialState
+  );
   return (
     <form action={formAction} className="w-full">
       <div className="flex flex-col gap-4">
@@ -44,7 +47,7 @@ const TodoEditForm = ({ todo }: TodoEditFormProps) => {
           <p className="col-span-2 text-red-600">{state.error}</p>
         )}
         <div className="grid grid-cols-[1fr_auto_auto] gap-4 px-2">
-          <SubmitButton />
+          <SubmitButton pending={pending} />
           <CancelButton />
         </div>
       </div>
