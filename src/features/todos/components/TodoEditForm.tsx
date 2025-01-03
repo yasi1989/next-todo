@@ -1,13 +1,18 @@
 "use client";
 import React, { useActionState } from "react";
-import { addTodoAction } from "../lib/action";
+import { editTodoAction } from "../lib/action";
+import { Todo } from "../types";
 import SubmitButton from "@/components/SubmitButton";
 import CancelButton from "@/components/CancelButton";
 import { initialState } from "../lib/todoTypes";
 
-const TodoNewForm = () => {
+type TodoEditFormProps = {
+  todo: Todo;
+};
+
+const TodoEditForm = ({ todo }: TodoEditFormProps) => {
   const [state, formAction, pending] = useActionState(
-    addTodoAction,
+    editTodoAction,
     initialState
   );
   return (
@@ -21,12 +26,26 @@ const TodoNewForm = () => {
             type="text"
             name="content"
             id="content"
+            defaultValue={todo.content ?? ""}
             className="border border-gray-300 rounded-md focus:outline-none p-1"
           />
-          {state.error && (
-            <p className="col-span-2 text-red-600">{state.error}</p>
-          )}
         </div>
+        <div className="grid grid-cols-[1fr_auto_auto] justify-center items-center w-full gap-4 px-2">
+          <label htmlFor="isCompleted" className="col-start-2">
+            Task is completed.
+          </label>
+          <input
+            type="checkbox"
+            id="isCompleted"
+            name="isCompleted"
+            defaultChecked={todo.isCompleted}
+            className="mr-2 w-4 h-4 col-start-3"
+          />
+          <input type="hidden" name="id" id="id" value={todo.id} />
+        </div>
+        {state.error && (
+          <p className="col-span-2 text-red-600">{state.error}</p>
+        )}
         <div className="grid grid-cols-[1fr_auto_auto] gap-4 px-2">
           <SubmitButton pending={pending} />
           <CancelButton />
@@ -36,4 +55,4 @@ const TodoNewForm = () => {
   );
 };
 
-export default TodoNewForm;
+export default TodoEditForm;
